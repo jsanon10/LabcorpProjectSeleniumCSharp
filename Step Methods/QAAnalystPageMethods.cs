@@ -1,11 +1,16 @@
-﻿using LabcorpProject.Page_Objects;
+﻿using LabcorpAutomation.Page_Objects;
+using OpenQA.Selenium;
 
-
-namespace LabcorpProject.Step_Methods
+namespace LabcorpAutomation.Step_Methods
 {
-    internal class QAAnalystPageMethods
+    public class QAAnalystPageMethods
     {
-        QAAnalystPageObjects _qaAnalystPageObjects = new QAAnalystPageObjects();
+        private readonly QAAnalystPageObjects _qaAnalystPageObjects;
+
+        public QAAnalystPageMethods(IWebDriver driver)
+        {
+            _qaAnalystPageObjects = new QAAnalystPageObjects(driver);
+        }
         public string GetTheJobTitle() 
         {
            return _qaAnalystPageObjects.txtJobName.Text;
@@ -22,7 +27,7 @@ namespace LabcorpProject.Step_Methods
             try
             {
                 //bool isLocationVisible = _careersPageObjects.positionLocationByID(positionId).Displayed;
-                return _qaAnalystPageObjects.txtLocation.Text.Substring(15);
+                return _qaAnalystPageObjects.txtLocation.Text.Substring(19);
             }
             catch
             {
@@ -105,6 +110,30 @@ namespace LabcorpProject.Step_Methods
 
            return firstRequirment;
               
+        }
+
+        public string GetFirstSentenceOfTheThirdParagraph()
+        {
+           
+            string fullText = _qaAnalystPageObjects.fullJobDescription.Text;
+       
+            string[] allParagraphs = fullText.Split(new[] { "\r\n", "\n" }, StringSplitOptions.RemoveEmptyEntries);
+
+            string thirdParagraph = allParagraphs[2];
+
+            string[] thirdParagraphSentences = thirdParagraph.Split(new[] { '.', '!', '?' }, StringSplitOptions.RemoveEmptyEntries);
+
+            return thirdParagraphSentences[0].Trim() + ".";
+
+        }
+
+        public string GetSecondBulletPoint(string header)
+        {
+            string fullText = _qaAnalystPageObjects.fullJobDescription.Text;
+
+            return fullText.Split(new[] { header }, StringSplitOptions.RemoveEmptyEntries)[1]
+                .Split(new[] { "\r\n", "\n" }, StringSplitOptions.RemoveEmptyEntries)[1].Trim();
+
         }
     }
 }

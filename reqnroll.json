@@ -1,0 +1,10 @@
+{
+  "generator": {
+    "unitTestProvider": "xunit"
+  },
+  "runtime": {
+    "dependencyInjection": {
+      "framework": "boDi"
+    }
+  }
+}

@@ -1,11 +1,18 @@
-﻿using LabcorpProject.Drivers;
+﻿using LabcorpAutomation.Drivers;
 using OpenQA.Selenium;
 
 
-namespace LabcorpProject.Page_Objects
+namespace LabcorpAutomation.Page_Objects
 {
-    internal class HomePageObjects
+    public class HomePageObjects
     {
-        public IWebElement linkCareers => SeleniumDriver.driver.FindElement(By.LinkText("Careers"));
+        private readonly IWebDriver _driver;
+
+        public HomePageObjects(IWebDriver driver)
+        {
+            _driver = driver;
+        }
+
+        public IWebElement linkCareers => _driver.FindElement(By.LinkText("Careers"));
     }
 }

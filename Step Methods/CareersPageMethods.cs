@@ -1,11 +1,17 @@
-﻿using LabcorpProject.Page_Objects;
+﻿using LabcorpAutomation.Page_Objects;
+using OpenQA.Selenium;
 
 
-namespace LabcorpProject.Step_Methods
+namespace LabcorpAutomation.Step_Methods
 {
-    internal class CareersPageMethods
+    public class CareersPageMethods
     {
-        CareersPageObjects _careersPageObjects = new CareersPageObjects();
+        private readonly CareersPageObjects _careersPageObjects;
+
+        public CareersPageMethods(IWebDriver driver)
+        {
+            _careersPageObjects = new CareersPageObjects(driver);
+        }
 
         public void SearchPosition(string position)
         {
@@ -30,8 +36,8 @@ namespace LabcorpProject.Step_Methods
 
             try 
             {
-                //bool isLocationVisible = _careersPageObjects.positionLocationByID(positionId).Displayed;
-                return _careersPageObjects.positionLocationByID(positionId).Text.Substring(15);
+                bool isLocationVisible = _careersPageObjects.positionLocationByID(positionId).Displayed;
+                return _careersPageObjects.positionLocationByID(positionId).Text.Substring(19);
             }
             catch 
             {
