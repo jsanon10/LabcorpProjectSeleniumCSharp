@@ -168,11 +168,14 @@ this.ScenarioInitialize(scenarioInfo);
  await testRunner.AndAsync(@"Confirm that the first sentence in the third paragraph is ""Ideal candidates will also be versed in the operations of various LIMS systems (Nautilus, Watson, IDBS eWorkbook), however, this is not required and training will be provided based on other skills and experience.""", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
 #line 13
- await testRunner.AndAsync("Confirm that the second bullet point under header \"Other Duties include\" is \"Use " +
-                        "laboratory equipment appropriate for assigned tasks.\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+ await testRunner.AndAsync("Confirm that the second bullet point under header \"Other duties include:\" is \"- U" +
+                        "se laboratory equipment appropriate for assigned tasks.\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
-#line 14
- await testRunner.AndAsync("Confirm that the first suggestion for Automation Tools is \"Selenium\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line 15
+ await testRunner.AndAsync("Start applying for the job and verify the position details", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 16
+ await testRunner.AndAsync("Navigate back to the job search", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();

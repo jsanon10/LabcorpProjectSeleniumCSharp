@@ -12,17 +12,20 @@ namespace LabcorpAutomation.StepDefinitions
         private readonly CareersPageMethods _careersPageMethods;
         private readonly QAAnalystPageMethods _qAAnalystPageMethods;
         private readonly HomePageMethods _homePageMethods;
+        private readonly ApplicationPageMethods _applicationPageMethods;
         private readonly PositionDetailsContext _positionDetailsContext;
 
         public CareersStepDefinitions(
             CareersPageMethods careersPageMethods,
             QAAnalystPageMethods qAAnalystPageMethods,
             HomePageMethods homePageMethods,
+            ApplicationPageMethods applicationPageMethods,
             PositionDetailsContext positionDetailsContext)
         {
             _careersPageMethods = careersPageMethods;
             _qAAnalystPageMethods = qAAnalystPageMethods;
             _homePageMethods = homePageMethods;
+            _applicationPageMethods = applicationPageMethods;
             _positionDetailsContext = positionDetailsContext;
         }
 
@@ -84,12 +87,25 @@ namespace LabcorpAutomation.StepDefinitions
             Assert.Equal(sentence, _qAAnalystPageMethods.GetSecondBulletPoint(header));
         }
 
-
-
         [Then(@"Confirm that the first suggestion for Automation Tools is ""([^""]*)""")]
         public void ThenConfirmThatTheFirstSuggestionForAutomationToolsIs(string firstRequiredTool)
         {
             Assert.Equal(firstRequiredTool, _qAAnalystPageMethods.GetTheFirstAutomationTool());
         }
+
+        [Then("Start applying for the job and verify the position details")]
+        public void ThenStartApplyingForTheJobAndVerifyThePositionDetails()
+        {
+            _qAAnalystPageMethods.StartApplying();
+        }
+
+        [Then("Navigate back to the job search")]
+        public void ThenNavigateBackToTheJobSearch()
+        {
+            //Assert.Equal(_positionDetailsContext.positionName, _applicationPageMethods.GetJobTitle());
+            _applicationPageMethods.NavigateToCareerHome();
+        }
+
+
     }
 }

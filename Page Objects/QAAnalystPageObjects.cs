@@ -21,5 +21,6 @@ namespace LabcorpAutomation.Page_Objects
         public IWebElement txtFirstSentenceSecondParagraph => _driver.FindElement(By.XPath("//div[@class='job-description']/div/p[3]"));
         public IWebElement txtAutomationTools => _driver.FindElement(By.XPath("//li/p[contains(., 'Automation tools')]"));
         public IWebElement fullJobDescription => _driver.FindElement(By.XPath("//div[@class='jd-info au-target']"));
+        public IWebElement btnApplyNow => _driver.FindElement(By.XPath("//div[@class='job-bottom-action']/a"));
     }
 }

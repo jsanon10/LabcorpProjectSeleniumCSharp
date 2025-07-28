@@ -1,15 +1,18 @@
 ﻿using LabcorpAutomation.Page_Objects;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 
 namespace LabcorpAutomation.Step_Methods
 {
     public class QAAnalystPageMethods
     {
         private readonly QAAnalystPageObjects _qaAnalystPageObjects;
+        private readonly IWebDriver _driver;
 
         public QAAnalystPageMethods(IWebDriver driver)
         {
             _qaAnalystPageObjects = new QAAnalystPageObjects(driver);
+            _driver = driver;
         }
         public string GetTheJobTitle() 
         {
@@ -130,10 +133,47 @@ namespace LabcorpAutomation.Step_Methods
         public string GetSecondBulletPoint(string header)
         {
             string fullText = _qaAnalystPageObjects.fullJobDescription.Text;
+            string[] lines = fullText.Split(new[] { "\r\n", "\n" }, StringSplitOptions.RemoveEmptyEntries);
 
-            return fullText.Split(new[] { header }, StringSplitOptions.RemoveEmptyEntries)[1]
-                .Split(new[] { "\r\n", "\n" }, StringSplitOptions.RemoveEmptyEntries)[1].Trim();
+            int startIndex = Array.FindIndex(lines, line => line.Trim().StartsWith(header));
 
+            if (startIndex == -1)
+                return "Header not found.";
+
+            // Extract bullet points (lines that start with "-") after the header
+            var bulletPoints = lines
+                .Skip(startIndex + 1)
+                .TakeWhile(line => line.Trim().StartsWith("-"))
+                .Select(line => line.Trim())
+                .ToList();
+
+            if (bulletPoints.Count >= 2)
+                return bulletPoints[1]; // Return the second bullet
+            else
+                return "Second bullet point not found.";
+
+        }
+
+        public void StartApplying()
+        {
+            IJavaScriptExecutor js = (IJavaScriptExecutor)_driver;
+            js.ExecuteScript("arguments[0].scrollIntoView(true);", _qaAnalystPageObjects.btnApplyNow);
+
+            Thread.Sleep(500);
+
+            var originalTab = _driver.CurrentWindowHandle;
+
+            _qaAnalystPageObjects.btnApplyNow.Click();
+
+            // Wait for new tab to open
+            Thread.Sleep(2000); // Replace with proper wait if needed
+
+            // Get all open window handles
+            var windowHandles = _driver.WindowHandles;
+            _driver.Close();
+
+            // Switch to the newest tab (last handle)
+            _driver.SwitchTo().Window(windowHandles.Last());
         }
     }
 }
