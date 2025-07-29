@@ -152,7 +152,7 @@ this.ScenarioInitialize(scenarioInfo);
  await testRunner.AndAsync("user clicks on the Careers link", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
 #line 8
- await testRunner.WhenAsync("user searches for position \"Analyst\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+ await testRunner.WhenAsync("user searches for position \"Senior Java Engineer - Lead\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
 #line 9
  await testRunner.AndAsync("user finds the searched position and retreives its details", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
@@ -165,17 +165,15 @@ this.ScenarioInitialize(scenarioInfo);
                         "ts page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
 #line 12
- await testRunner.AndAsync(@"Confirm that the first sentence in the third paragraph is ""Ideal candidates will also be versed in the operations of various LIMS systems (Nautilus, Watson, IDBS eWorkbook), however, this is not required and training will be provided based on other skills and experience.""", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+ await testRunner.AndAsync(@"Confirm that the first sentence in the second intro paragraph is ""The prospective candidate will be engaged in a wide variety of work, including but not limited to web applications and web service development, platform development, automation, and coaching/mentoring of teams adopting the platforms.""", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
 #line 13
- await testRunner.AndAsync("Confirm that the second bullet point under header \"Other duties include:\" is \"- U" +
-                        "se laboratory equipment appropriate for assigned tasks.\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+ await testRunner.AndAsync("Confirm that the second bullet point under header \"Responsibilities:\" is \"Documen" +
+                        "t and present architectural decisions to the team, peers and management. Provide" +
+                        "s architectural guidance to the development team.\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
-#line 15
- await testRunner.AndAsync("Start applying for the job and verify the position details", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
-#line hidden
-#line 16
- await testRunner.AndAsync("Navigate back to the job search", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line 14
+ await testRunner.AndAsync("Confirm that the first Benefit offered to the applicant is \"Medical\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();

@@ -10,20 +10,20 @@ namespace LabcorpAutomation.StepDefinitions
     public sealed class CareersStepDefinitions
     {
         private readonly CareersPageMethods _careersPageMethods;
-        private readonly QAAnalystPageMethods _qAAnalystPageMethods;
+        private readonly SeniorJavaEngineerPageMethods _seniorJavaEngineerPageMethods;
         private readonly HomePageMethods _homePageMethods;
         private readonly ApplicationPageMethods _applicationPageMethods;
         private readonly PositionDetailsContext _positionDetailsContext;
 
         public CareersStepDefinitions(
             CareersPageMethods careersPageMethods,
-            QAAnalystPageMethods qAAnalystPageMethods,
+            SeniorJavaEngineerPageMethods seniorJavaEngineerPageMethods,
             HomePageMethods homePageMethods,
             ApplicationPageMethods applicationPageMethods,
             PositionDetailsContext positionDetailsContext)
         {
             _careersPageMethods = careersPageMethods;
-            _qAAnalystPageMethods = qAAnalystPageMethods;
+            _seniorJavaEngineerPageMethods = seniorJavaEngineerPageMethods;
             _homePageMethods = homePageMethods;
             _applicationPageMethods = applicationPageMethods;
             _positionDetailsContext = positionDetailsContext;
@@ -64,48 +64,41 @@ namespace LabcorpAutomation.StepDefinitions
         [Then(@"Confirm that position's details from the list of results matches the details on its page")]
         public void ThenConfirmThatPositionsDetailsFromTheListOfResultsMatchesTheDetailsOnItsPage()
         {
-            Assert.Equal(_positionDetailsContext.positionName, _qAAnalystPageMethods.GetTheJobTitle());
-            Assert.Equal(_positionDetailsContext.positionID, _qAAnalystPageMethods.GetTheJobID());
-            Assert.Equal(_positionDetailsContext.positionLocation, _qAAnalystPageMethods.GetTheJobLocation());
+            Assert.Equal(_positionDetailsContext.positionName, _seniorJavaEngineerPageMethods.GetTheJobTitle());
+            Assert.Equal(_positionDetailsContext.positionID, _seniorJavaEngineerPageMethods.GetTheJobID());
+            Assert.Equal(_positionDetailsContext.positionLocation, _seniorJavaEngineerPageMethods.GetTheJobLocation());
         }
 
         [Then(@"Confirm that the first sentence in the second intro paragraph is ""([^""]*)""")]
         public void ThenConfirmThatTheFirstSentenceInTheSecondIntroParagraphIs(string sentence)
         {
-            Assert.Equal(sentence, _qAAnalystPageMethods.GetFirstSentenceOfTheSecondParagraph());
-        }
-
-        [Then("Confirm that the first sentence in the third paragraph is {string}")]
-        public void ThenConfirmThatTheFirstSentenceInTheThirdParagraphIs(string sentence)
-        {
-            Assert.Equal(sentence, _qAAnalystPageMethods.GetFirstSentenceOfTheThirdParagraph());
+            Assert.Equal(sentence, _seniorJavaEngineerPageMethods.GetFirstSentenceOfTheSecondParagraph());
         }
 
         [Then("Confirm that the second bullet point under header {string} is {string}")]
         public void ThenConfirmThatTheSecondBulletPointUnderHeaderIs(string header, string sentence)
         {
-            Assert.Equal(sentence, _qAAnalystPageMethods.GetSecondBulletPoint(header));
+            Assert.Equal(sentence, _seniorJavaEngineerPageMethods.GetSecondBulletPoint(header));
         }
 
-        [Then(@"Confirm that the first suggestion for Automation Tools is ""([^""]*)""")]
-        public void ThenConfirmThatTheFirstSuggestionForAutomationToolsIs(string firstRequiredTool)
+        [Then("Confirm that the first Benefit offered to the applicant is {string}")]
+        public void ThenConfirmThatTheFirstBenefitOfferedToTheApplicantIs(string benefit)
         {
-            Assert.Equal(firstRequiredTool, _qAAnalystPageMethods.GetTheFirstAutomationTool());
+            Assert.Equal(benefit, _seniorJavaEngineerPageMethods.GetTheFirstBenefit());
         }
 
         [Then("Start applying for the job and verify the position details")]
         public void ThenStartApplyingForTheJobAndVerifyThePositionDetails()
         {
-            _qAAnalystPageMethods.StartApplying();
+            _seniorJavaEngineerPageMethods.StartApplying();
         }
 
         [Then("Navigate back to the job search")]
         public void ThenNavigateBackToTheJobSearch()
         {
-            //Assert.Equal(_positionDetailsContext.positionName, _applicationPageMethods.GetJobTitle());
+            Assert.Equal(_positionDetailsContext.positionName, _applicationPageMethods.GetJobTitle());
             _applicationPageMethods.NavigateToCareerHome();
         }
-
 
     }
 }

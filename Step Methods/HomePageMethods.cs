@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using LabcorpAutomation.Page_Objects;
-using OpenQA.Selenium.Support.UI;
 
 namespace LabcorpAutomation.Step_Methods
 {
@@ -17,9 +16,6 @@ namespace LabcorpAutomation.Step_Methods
 
         public void ClickOnTheCareersLink()
         {
-            //        new WebDriverWait(_driver, TimeSpan.FromSeconds(10))
-            //.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(_homePageObjects.linkCareers))
-            //.Click();
             _homePageObjects.linkCareers.Click();
         }
 

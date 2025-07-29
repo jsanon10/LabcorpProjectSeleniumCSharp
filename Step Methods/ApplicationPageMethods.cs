@@ -1,10 +1,6 @@
 ﻿using LabcorpAutomation.Page_Objects;
 using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace LabcorpAutomation.Step_Methods
 {
@@ -22,7 +18,6 @@ namespace LabcorpAutomation.Step_Methods
         {
             try
             {
-                // Check if the cookie consent button is present and click it
                 var cookieConsentBanner = _applicationPageObjects.bnrCookieConsent;
                 if (cookieConsentBanner.Displayed)
                 {
@@ -45,9 +40,7 @@ namespace LabcorpAutomation.Step_Methods
             //handleCookieConsent();
 
             var iframes = _applicationPageObjects.theHeader;
-            _driver.SwitchTo().Frame(iframes); // or use iframe id/name
-
-
+            _driver.SwitchTo().Frame(iframes); 
             _applicationPageObjects.lnkCareerHome.Click();
         }
     }

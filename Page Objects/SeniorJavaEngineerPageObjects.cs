@@ -4,10 +4,10 @@ using OpenQA.Selenium;
 
 namespace LabcorpAutomation.Page_Objects
 {
-    public class QAAnalystPageObjects
+    public class SeniorJavaEngineerPageObjects
     {
         private readonly IWebDriver _driver;
-        public QAAnalystPageObjects(IWebDriver driver)
+        public SeniorJavaEngineerPageObjects(IWebDriver driver)
         {
             _driver = driver;
         }
